@@ -17,9 +17,9 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>90</x>
       <y>90</y>
-      <width>419</width>
+      <width>489</width>
       <height>381</height>
      </rect>
     </property>
@@ -64,6 +64,13 @@
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QPushButton" name="btnEllipse">
+         <property name="text">
+          <string>Ellipse</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </item>
      <item>
@@ -71,7 +78,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -93,11 +100,14 @@
        <property name="decimals">
         <number>1</number>
        </property>
+       <property name="maximum">
+        <double>100.000000000000000</double>
+       </property>
        <property name="singleStep">
         <double>0.100000000000000</double>
        </property>
        <property name="value">
-        <double>10.000000000000000</double>
+        <double>0.000000000000000</double>
        </property>
       </widget>
      </item>
@@ -117,7 +127,7 @@
         <double>0.100000000000000</double>
        </property>
        <property name="value">
-        <double>10.000000000000000</double>
+        <double>0.000000000000000</double>
        </property>
       </widget>
      </item>
@@ -134,7 +144,7 @@
         <number>512</number>
        </property>
        <property name="value">
-        <number>256</number>
+        <number>0</number>
        </property>
       </widget>
      </item>

@@ -10,10 +10,10 @@ class RenderArea : public QWidget
 public:
     explicit RenderArea(QWidget *parent = nullptr);
 
-    QSize minSizeHint() const ;
+    QSize virtual minSizeHint() const;
     QSize sizeHint() const Q_DECL_OVERRIDE;
 
-    enum ShapeType {Astroid, Cycloid, HuygensCycloid, HypoCycloid, Circle, FutureCurve};
+    enum ShapeType {Astroid, Cycloid, HuygensCycloid, HypoCycloid, Circle, Ellipse};
 
     void setBackgroundColor (QColor color) {mBackgroundColor = color;} // setter
     QColor backgroundColor () const {return mBackgroundColor;} // getter
@@ -65,7 +65,7 @@ private:
     QPointF compute_huygens (float t);
     QPointF compute_hypo (float t);
     QPointF compute_circle(float t);
-    QPointF compute_future_curve (float t);
+    QPointF compute_ellipse (float t);
     QColor mBackgroundColor;
     QColor mShapeColor;
     ShapeType mShape;
