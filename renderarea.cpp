@@ -44,6 +44,14 @@ QPointF RenderArea::compute_hypo(float t)
                 );
 }
 
+QPointF RenderArea::compute_circle(float t)
+{
+    return QPointF(
+                cos(t),  // x
+                sin(t)  // y
+                );
+}
+
 
 QPointF RenderArea::compute_future_curve(float t)
 {
@@ -56,13 +64,13 @@ void RenderArea::on_shape_changed()
     switch (mShape)
     {
     case Astroid:
-        mScale = 40;
+        mScale = 90;
         mIntervalLength = 2 * M_PI;
         mStepCount = 512;
         break;
     case Cycloid:
-        mScale = 4;
-        mIntervalLength = 6 * M_PI;
+        mScale = 10;
+        mIntervalLength = 4 * M_PI;
         mStepCount = 256;
         break;
     case HuygensCycloid:
@@ -71,9 +79,14 @@ void RenderArea::on_shape_changed()
         mStepCount = 512;
         break;
     case HypoCycloid:
-        mScale = 15;
+        mScale = 40;
         mIntervalLength = 2 * M_PI;
         mStepCount = 512;
+        break;
+    case Circle:
+        mScale = 40;
+        mIntervalLength = 2 * M_PI;
+        mStepCount = 128;
         break;
     case FutureCurve:
         break;
@@ -97,6 +110,9 @@ QPointF RenderArea::compute(float t)
         break;
     case HypoCycloid:
         return compute_hypo(t);
+        break;
+    case Circle:
+        return compute_circle(t);
         break;
     case FutureCurve:
         return compute_future_curve(t);

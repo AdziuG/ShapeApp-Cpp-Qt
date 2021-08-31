@@ -50,19 +50,29 @@ void MainWindow::on_btnHypoCycloid_clicked()
     update_ui();
 }
 
+void MainWindow::on_btnCircle_clicked()
+{
+    // set render area's shape
+    this->ui->renderArea->setShape(RenderArea::Circle);
+    this->ui->renderArea->repaint();
+    update_ui();
+}
 
 void MainWindow::on_spinScale_valueChanged(double arg1)
 {
+    // set value scale after changes
     this->ui->renderArea->setScale(arg1);
 }
 
 void MainWindow::on_spinIntervalLength_valueChanged(double arg1)
 {
+    // set interval length after changes
     this->ui->renderArea->setIntervalLength(arg1);
 }
 
 void MainWindow::on_spinCount_valueChanged(int arg1)
 {
+    // set step count after changes
     this->ui->renderArea->setStepCount(arg1);
 }
 
@@ -86,4 +96,5 @@ void MainWindow::on_btnLineColor_clicked()
     QColor color = QColorDialog::getColor(ui->renderArea->shapeColor(), this, "Select color");
     ui->renderArea->setShapeColor(color);
 }
+
 

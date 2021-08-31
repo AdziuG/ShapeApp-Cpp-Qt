@@ -13,7 +13,7 @@ public:
     QSize minSizeHint() const ;
     QSize sizeHint() const Q_DECL_OVERRIDE;
 
-    enum ShapeType {Astroid, Cycloid, HuygensCycloid, HypoCycloid, FutureCurve};
+    enum ShapeType {Astroid, Cycloid, HuygensCycloid, HypoCycloid, Circle, FutureCurve};
 
     void setBackgroundColor (QColor color) {mBackgroundColor = color;} // setter
     QColor backgroundColor () const {return mBackgroundColor;} // getter
@@ -21,29 +21,30 @@ public:
     void setShapeColor(QColor color) {mShapeColor = color;} // setter
     QColor shapeColor() const {return mShapeColor;} // getter
 
+
     void setShape ( ShapeType shape) // setter
     {
         mShape = shape;
         on_shape_changed();
     }
-
     ShapeType shape () const { return mShape; } // getter
+
 
     void setScale(float scale)  // setter
     {
         mScale = scale;
         repaint();
     }
-
     float scale() const {return mScale;}  // getter
+
 
     void setIntervalLength(float interval_length)  // setter
     {
         mIntervalLength = interval_length;
         repaint();
     }
-
     float intervalLength() const {return mIntervalLength;}  // getter
+
 
     void setStepCount(int spinCount) // setter
     {
@@ -52,24 +53,25 @@ public:
     }
     int step_count() const {return mStepCount;}   // getter
 
+
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 
 private:
-    QColor mBackgroundColor;
-    QColor mShapeColor;
-    ShapeType mShape;
+    void on_shape_changed();
     QPointF compute (float t); // dispatch func based on mShape's type
     QPointF compute_astroid (float t);
     QPointF compute_cycloid (float t);
     QPointF compute_huygens (float t);
     QPointF compute_hypo (float t);
+    QPointF compute_circle(float t);
     QPointF compute_future_curve (float t);
-    void on_shape_changed();
+    QColor mBackgroundColor;
+    QColor mShapeColor;
+    ShapeType mShape;
     float mIntervalLength;
     float mScale;
     int mStepCount;
-
 
 signals:
 
