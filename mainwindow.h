@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QColorDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -24,6 +25,18 @@ private slots:
 
     void on_btnHypoCycloid_clicked();
 
+    void on_spinScale_valueChanged(double arg1);
+
+    void on_spinIntervalLength_valueChanged(double arg1);
+
+    void on_spinCount_valueChanged(int arg1);
+
+    void on_btnBackground_clicked();
+
+    void on_btnLineColor_clicked();
+
+private:
+    void update_ui();
 private:
     Ui::MainWindow *ui;
 };

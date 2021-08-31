@@ -18,12 +18,39 @@ public:
     void setBackgroundColor (QColor color) {mBackgroundColor = color;} // setter
     QColor backgroundColor () const {return mBackgroundColor;} // getter
 
+    void setShapeColor(QColor color) {mShapeColor = color;} // setter
+    QColor shapeColor() const {return mShapeColor;} // getter
+
     void setShape ( ShapeType shape) // setter
     {
         mShape = shape;
         on_shape_changed();
     }
+
     ShapeType shape () const { return mShape; } // getter
+
+    void setScale(float scale)  // setter
+    {
+        mScale = scale;
+        repaint();
+    }
+
+    float scale() const {return mScale;}  // getter
+
+    void setIntervalLength(float interval_length)  // setter
+    {
+        mIntervalLength = interval_length;
+        repaint();
+    }
+
+    float intervalLength() const {return mIntervalLength;}  // getter
+
+    void setStepCount(int spinCount) // setter
+    {
+        mStepCount = spinCount;
+        repaint();
+    }
+    int step_count() const {return mStepCount;}   // getter
 
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;

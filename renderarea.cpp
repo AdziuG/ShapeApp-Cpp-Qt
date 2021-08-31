@@ -4,7 +4,7 @@
 
 RenderArea::RenderArea(QWidget *parent) :
     QWidget(parent),
-    mBackgroundColor (0, 0, 255),
+    mBackgroundColor (0, 0, 0),
     mShapeColor (255, 255, 255)
 {
     on_shape_changed();
@@ -47,7 +47,7 @@ QPointF RenderArea::compute_hypo(float t)
 
 QPointF RenderArea::compute_future_curve(float t)
 {
-//
+    //TDB
 }
 
 
@@ -123,23 +123,6 @@ void RenderArea::paintEvent(QPaintEvent *event)
 
     painter.setRenderHint(QPainter::Antialiasing, true);
 
-    switch (mShape) {
-    case Astroid:
-        mBackgroundColor = Qt::red;
-        break;
-    case Cycloid:
-        mBackgroundColor = Qt::green;
-        break;
-    case HuygensCycloid:
-        mBackgroundColor = Qt::blue;
-        break;
-    case HypoCycloid:
-        mBackgroundColor = Qt::yellow;
-        break;
-    default:
-        mBackgroundColor = Qt::black;
-
-    }
     painter.setPen(mShapeColor);
     painter.setBrush(mBackgroundColor);
 
@@ -148,6 +131,12 @@ void RenderArea::paintEvent(QPaintEvent *event)
     painter.drawRect(this->rect());
 
     QPoint center = this->rect().center();
+
+    QPointF prevPoint = compute(0);
+    QPoint prevPixel;
+    prevPixel.setX(prevPoint.x() * mScale + center.x());
+    prevPixel.setY(prevPoint.y() * mScale + center.y());
+
     float step = mIntervalLength / mStepCount;
     for (float t = 0; t < mIntervalLength; t += step)
     {
@@ -157,6 +146,7 @@ void RenderArea::paintEvent(QPaintEvent *event)
         pixel.setX(point.x() * mScale + center.x());
         pixel.setY(point.y() * mScale + center.y());
 
-        painter.drawPoint(pixel);
+        painter.drawLine(pixel, prevPixel);
+        prevPixel = pixel;
     }
 }
